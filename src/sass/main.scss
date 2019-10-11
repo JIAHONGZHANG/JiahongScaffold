@@ -1,0 +1,47 @@
+/* abstracts go here */
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+/* bases go here */
+@import "base/animations";
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
+
+/* components go here */
+
+
+/* layouts go here */
+@import "layout/footer";
+@import "layout/grid";
+@import "layout/header";
+/* @import "layout/hack"; */
+
+/* pages go here */
+@import "pages/home";
+
+/* preset */
+@keyframes spin {
+    100% {
+        transform:rotate(360deg); 
+    }
+}
+
+#root{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background: #61DBFB;
+    background: linear-gradient(to bottom, #61DBFB 0%, #57BCDB 40%, #35788A 100%);
+}
+
+#outer{
+    @include absCenter;
+    display: inline-block;
+}
+#react-icon{
+    width: 40rem;
+    height: 40rem;
+    animation:spin 30s linear infinite;
+}
