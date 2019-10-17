@@ -27,7 +27,7 @@ const makePlugins = (configs) => {
 
 const configs = {
 	entry: {
-		main: './src/app.jsx'
+		index: './src/app.jsx'
 	},
 	resolve:{
 		extensions: ['.js', '.jsx'],
