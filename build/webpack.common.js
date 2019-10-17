@@ -5,7 +5,27 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const devConfig = require('./webpack.dev.js');
 const prodConfig = require('./webpack.prod.js');
-const commonConfig = {
+
+
+const makePlugins = (configs) => {
+	const plugins = [
+		new CleanWebpackPlugin(['dist'], {
+			root: path.resolve(__dirname, '../')
+		})
+	];
+	Object.keys(configs.entry).forEach(item => {
+		plugins.push(
+			new HtmlWebpackPlugin({
+				template: 'public/index.html',
+				filename: `${item}.html`,
+				chunks: ['runtime', 'vendors', item]
+			})
+		)
+	});
+	return plugins;
+}
+
+const configs = {
 	entry: {
 		main: './src/app.jsx'
 	},
@@ -40,19 +60,13 @@ const commonConfig = {
 					outputPath: 'font/'
 				}
 			} 
+		},{
+			test: /.ico$/,
+			use:{
+				loader: 'file-loader'
+			}
 		}]
 	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: 'public/index.html'
-		}), 
-		new CleanWebpackPlugin(['dist'], {
-			root: path.resolve(__dirname, '../')
-		}),
-		new webpack.ProvidePlugin({
-			$: 'jquery'
-		}),
-	],
 	optimization: {
 		runtimeChunk: {
 			name: 'runtime'
@@ -75,11 +89,13 @@ const commonConfig = {
 	}
 }
 
+configs.plugins = makePlugins(configs);
+
 module.exports = (env) => {
 	if(env && env.production) {
-		return merge(commonConfig, prodConfig);
+		return merge(configs, prodConfig);
 	}else {
-		return merge(commonConfig, devConfig);
+		return merge(configs, devConfig);
 	}
 }
 

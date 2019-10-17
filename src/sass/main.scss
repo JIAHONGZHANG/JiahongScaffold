@@ -16,7 +16,7 @@
 @import "layout/footer";
 @import "layout/grid";
 @import "layout/header";
-/* @import "layout/hack"; */
+/* @import "layout/hack";  */
 
 /* pages go here */
 @import "pages/home";
@@ -39,6 +39,12 @@
 #outer{
     @include absCenter;
     display: inline-block;
+
+    #z-icon{
+        background-image: url(../../public/z-icon-32x32.png);
+        width: 32px;
+        height: 32px;
+    }
 }
 #react-icon{
     width: 40rem;
