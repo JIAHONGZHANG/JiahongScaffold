@@ -47,8 +47,7 @@ const configs = {
 			use: {
 				loader: 'url-loader',
 				options: {
-					name: '[name]_[hash].[ext]',
-					outputPath: 'img/',
+					name: '[path]img/[name]_[hash:8].[ext]',
 					limit: 1024
 				}
 			} 
@@ -57,13 +56,16 @@ const configs = {
 			use: {
 				loader: 'file-loader',
 				options:{
-					outputPath: 'font/'
+					name: '[path]font/[name]_[hash:8].[ext]',
 				}
 			} 
 		},{
 			test: /.ico$/,
 			use:{
-				loader: 'file-loader'
+				loader: 'file-loader',
+				options: {
+					name: '[name].[ext]',
+				  }
 			}
 		}]
 	},

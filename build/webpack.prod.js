@@ -50,8 +50,8 @@ const prodConfig = {
 		})
 	],
 	output: {
-		filename: 'js/[name].[contenthash].js',
-		chunkFilename: 'js/[name].[contenthash].js'
+		filename: 'js/[name].[contenthash:8].js',
+		chunkFilename: 'js/[name].[contenthash:8].js'
 	}
 }
 
