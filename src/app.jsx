@@ -2,24 +2,9 @@ import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import './sass/main.scss';
 import ReactIcon from 'public/react-brands.svg';
-import 'antd/es/rate/style/index.css';
-import 'antd/es/divider/style/index.css';
-import { Rate,Divider } from 'antd';
+import Rating from './jsx/rating';
+
 class App extends Component {
-	constructor(){
-		super();
-		this.desc = ['terrible', 'bad', 'normal', 'good', 'wonderful']
-		this.state = {
-			desc: 5
-		}
-	}
-
-	handleChange = (value) =>{
-		this.setState({
-			desc: value
-		})
-	}
-
 	render() {
 		return (
 			<React.Fragment>
@@ -33,17 +18,7 @@ class App extends Component {
 					}} id="z-icon">
 					</div>
 				</div>
-				<span style={{
-						position: "absolute",
-						top:"10%",
-						left:"50%",
-						transform:"translateX(-50%)",
-						padding: "0 1rem"
-						}} >
-					<div style={{fontSize:"2rem",textAlign:"center"}}>{this.desc[this.state.desc-1]}</div>
-					<Divider style={{margin:"0.4rem 0"}}/>
-					<Rate onChange={this.handleChange} value={this.state.desc}/>
-				</span>
+				<Rating/>
 			</React.Fragment>
 		)
 	}

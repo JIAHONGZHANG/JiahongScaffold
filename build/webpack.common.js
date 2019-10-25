@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const devConfig = require('./webpack.dev.js');
 const prodConfig = require('./webpack.prod.js');
@@ -18,7 +17,7 @@ const makePlugins = (configs) => {
 			new HtmlWebpackPlugin({
 				template: 'public/index.html',
 				filename: `${item}.html`,
-				chunks: ['runtime', 'vendors', item]
+				chunks: ['runtime', 'vendors', item, 'common']
 			})
 		)
 	});
@@ -27,7 +26,8 @@ const makePlugins = (configs) => {
 
 const configs = {
 	entry: {
-		index: './src/app.jsx'
+		index: './src/app.jsx',
+		index2: './src/app_2.jsx'
 	},
 	resolve:{
 		extensions: ['.js', '.jsx'],
@@ -74,16 +74,6 @@ const configs = {
 			name: 'runtime'
 		},
 		usedExports: true,
-		splitChunks: {
-      chunks: 'all',
-      cacheGroups: {
-      	vendors: {
-      		test: /[\\/]node_modules[\\/]/,
-      		priority: -10,
-      		name: 'vendors',
-      	}
-      }
-    }
 	},
 	performance: false,
 	output: {

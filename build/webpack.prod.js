@@ -6,35 +6,58 @@ const prodConfig = {
 	mode: 'production',
 	devtool: 'cheap-module-source-map',
 	module: {
-		rules:[{
+		rules: [{
 			test: /\.scss$/,
-			use: [
-				MiniCssExtractPlugin.loader, 
-				{
-					loader: 'css-loader',
-					options: {
-						sourceMap: true,
-						importLoaders: 2
-					}
-				},
-				{
-					loader: 'sass-loader',
-					options:{
-						sourceMap: true
-					}
-				},
+			use: [{
+				loader: MiniCssExtractPlugin.loader,
+				options: {
+					publicPath: '../'
+				}
+			},
+			{
+				loader: 'css-loader',
+				options: {
+					sourceMap: true,
+					importLoaders: 2
+				}
+			},
+			{
+				loader: 'sass-loader',
+				options: {
+					sourceMap: true
+				}
+			},
 				'postcss-loader'
 			]
 		}, {
 			test: /\.css$/,
-			use: [
-				MiniCssExtractPlugin.loader,
+			use: [{
+				loader: MiniCssExtractPlugin.loader,
+				options: {
+					publicPath: '../'
+				}
+			},
 				'css-loader',
 				'postcss-loader'
 			]
 		}]
 	},
 	optimization: {
+		splitChunks: {
+			chunks: 'all',
+			cacheGroups: {
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10,
+					name: 'vendors',
+				},
+				common: {
+					test: /[\\/]src[\\/]jsx[\\/]/,
+					priority: -20,
+					name: 'common'
+				}
+			}
+		},
 		minimizer: [
 			new OptimizeCSSAssetsPlugin({}),
 			new UglifyJsPlugin({

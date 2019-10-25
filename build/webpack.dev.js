@@ -5,17 +5,16 @@ const devConfig = {
 	devtool: 'cheap-module-eval-source-map',
 	devServer: {
 		overlay: true,
-		before: function(app, server){
-			app.get('/api/example.json', function (req, res) {
-				res.json({
-					custom: '2000333'
-				})
-			})
-		},
 		contentBase: './dist',
 		open: true,
 		port: 8080,
-		hot: true
+		hot: true,
+		proxy: {
+			'/api/*': {
+				target: 'http://localhost:3000',
+				secure: false
+			}
+		}
 	},
 	module: {
 		rules: [{
@@ -39,6 +38,23 @@ const devConfig = {
 				'postcss-loader'
 			]
 		}]
+	},
+	optimization:{
+		splitChunks: {
+			chunks: 'async',
+			cacheGroups: {
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10,
+					name: 'vendors',
+				},
+			  common:{
+				  test: /[\\/]src[\\/]component[\\/]/,
+				  priority: -20,
+				  name: 'common'
+			  }
+			}
+		  }
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin()
