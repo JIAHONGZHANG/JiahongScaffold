@@ -10,8 +10,8 @@
   "main": "app.jsx",
   "scripts": {
     "dev-build": "webpack --config ./build/webpack.common.js",
-    "mock": "json-server --watch db.json --routes routes.json",
-    "start": "concurrently \"webpack-dev-server --config ./build/webpack.common.js\" \"json-server --watch db.json --routes routes.json\"",
+    "mock": "json-server --watch db.json --routes routes.json --middlewares json-server-middleware.js",
+    "start": "concurrently \"webpack-dev-server --config ./build/webpack.common.js\" \"json-server --watch db.json --routes routes.json --middlewares json-server-middleware.js\"",
     "build": "webpack --env.production --config ./build/webpack.common.js",
     "build-a": "webpack --env.production --config ./build/webpack.common.js --json > stats.json"
   },
