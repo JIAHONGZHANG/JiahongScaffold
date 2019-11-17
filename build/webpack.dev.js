@@ -28,8 +28,7 @@ const devConfig = {
 					}
 				},
 				'postcss-loader',
-				'sass-loader',
-				
+				'sass-loader'
 			]
 		}, {
 			test: /\.css$/,

@@ -3,7 +3,6 @@ import ReactDom from 'react-dom';
 import './sass/main.scss';
 import ReactIcon from 'public/react-brands.svg';
 import Rating from './jsx/rating';
-
 class App extends Component {
 	render() {
 		return (
