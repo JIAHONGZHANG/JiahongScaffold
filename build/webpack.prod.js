@@ -18,16 +18,16 @@ const prodConfig = {
 				loader: 'css-loader',
 				options: {
 					sourceMap: true,
-					importLoaders: 2
+					importLoaders: 3
 				}
 			},
+			'postcss-loader',
 			{
 				loader: 'sass-loader',
 				options: {
 					sourceMap: true
 				}
-			},
-				'postcss-loader'
+			}
 			]
 		}, {
 			test: /\.css$/,

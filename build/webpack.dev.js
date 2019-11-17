@@ -24,11 +24,12 @@ const devConfig = {
 				{
 					loader: 'css-loader',
 					options: {
-						importLoaders: 2
+						importLoaders: 3
 					}
 				},
+				'postcss-loader',
 				'sass-loader',
-				'postcss-loader'
+				
 			]
 		}, {
 			test: /\.css$/,

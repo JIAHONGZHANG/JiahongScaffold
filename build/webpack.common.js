@@ -5,7 +5,6 @@ const merge = require('webpack-merge');
 const devConfig = require('./webpack.dev.js');
 const prodConfig = require('./webpack.prod.js');
 
-
 const makePlugins = (configs) => {
 	const plugins = [
 		new CleanWebpackPlugin(['dist'], {

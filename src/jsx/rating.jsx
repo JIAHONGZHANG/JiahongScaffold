@@ -1,6 +1,4 @@
 import React,{useState} from 'react';
-import 'antd/es/rate/style/index.css';
-import 'antd/es/divider/style/index.css';
 import { Rate,Divider } from 'antd';
 
 const Rating = () => {
