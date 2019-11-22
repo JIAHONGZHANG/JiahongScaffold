@@ -1,0 +1,22 @@
+// Preset
+$theme-colors: (
+  "realme": #FFC915,
+  "oppo": #098A5A 
+);
+
+.bootstrap-reset{
+    background-color: #553D7B;
+    height: 100vh;
+}
+
+@keyframes spin {
+    100% {
+        transform:rotate(360deg); 
+    }
+}
+
+#react-icon{
+    animation:spin 10s linear infinite;
+}
+
+@import '~bootstrap/scss/bootstrap.scss';
